@@ -5,21 +5,13 @@ def index(request):
     return render(request, 'store/index.html')
 
 
-def catalog(request):
-    return render(request, 'store/catalog.html')
-
-
-def headphones(request):
+def category(request, category_slug):
     return render(request, 'store/category_page.html')
 
 
-def acoustic(request):
-    return render(request, 'store/category_page.html')
+def categories(request):
+    return render(request, 'store/categories.html')
 
 
-def accessories(request):
-    return render(request, 'store/category_page.html')
-
-
-def product(request):
+def product(request, product_slug):
     return render(request, 'store/product.html')
