@@ -49,6 +49,16 @@ class Battery(models.Model):
         return f'play_time: {self.play_time}\nwireless_charging: {self.wireless_charging}\ncharging_time: {self.charging_time}\n'
 
 
+class Controls(models.Model):
+    remote = models.BooleanField(default=True)
+    microphone = models.BooleanField(default=True)
+    noise_cancellation = models.BooleanField(default=False)
+    connectivity = models.ForeignKey("Connectivity", on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return f'remote: {self.remote}\nmicrophone: {self.microphone}\nnoise_cancellation: {self.noise_cancellation}\nconnectivity: {self.connectivity}\n'
+
+
 class Physical(models.Model):
     collapsible = models.BooleanField(default=True)
     water_resistance = models.BooleanField(default=False)
@@ -57,7 +67,7 @@ class Physical(models.Model):
     weight = models.IntegerField()
 
     def __str__(self):
-        return f'collapsible: {self.collapsible}\nwater_resistance: {self.water_resistance}\ncharging_time: {self.charging_time}\ncolor: {self.color.name}\nweight: {self.weight}\n'
+        return f'collapsible: {self.collapsible}\nwater_resistance: {self.water_resistance}\ncharging_time: {self.charging_time}\ncolor: {self.color.name}\nweight: {self.weight}\n '
 
 
 class Connectivity(models.Model):

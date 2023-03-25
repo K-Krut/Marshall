@@ -1,13 +1,15 @@
 from django.urls import path
 from . import views
+from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
-    path('register/', views.register, name='register'),
-              ]
+    path('login/', LoginUser.as_view(), name='login'),
+    path('logout/', LogoutUser.as_view(), name='logout'),
+    path('register/', (RegisterUser.as_view()), name='register'),
+]
+
 """
 
     path('categories/', views.categories, name='categories'),  # HTTP response code: 200 (OK)
