@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block link %}
-    <title>Registration</title>
+    <title>Login</title>
 {% endblock %}
 
 
@@ -10,10 +10,8 @@
 	
 <div class="wrap_form">
     <div class="form_body">
-        <h2 class="form__header">Sign in</h2>
-        <form action="" method="post" class="form_registr">
-
-{##}
+        <h2 class="form__header">Login</h2>
+        <form action="{% url 'login' %}" method="post" class="form_registr">
 {#            <a href="{% url 'social:begin' 'google-oauth2' %} " class="btn btn-danger mb-3" style="width: 80%;">#}
 {#                Login with Google#}
 {#                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">#}
@@ -23,7 +21,7 @@
 
             {% csrf_token %}
             <div class="form-group-usual">
-                <label for="{{form.username.id_for_label}}">User name</label>
+                <label for="{{form.username.id_for_label}}">Email</label>
                 {{form.username}}
                 <div class="form-error">
                     {{form.username.errors}}
@@ -45,7 +43,7 @@
             <div class="button__body">
                 <a href="{% url 'register' %}" class="btn   first_butt">Create account</a>
 
-                <button type="submit" name="submit_button" class="btn btn-success btn-block mb-3">Sign in</button>
+                <button type="submit" name="submit_button" class="btn btn-success btn-block mb-3">Login</button>
             </div>
         </form>
     </div>
