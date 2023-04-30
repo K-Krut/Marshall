@@ -13,31 +13,14 @@
 
 	 	<form action="" method="post" class="form_registr">
 	 		{% csrf_token %}
-{#		 	<div class="name-form">#}
-{#		 		<div class="form-group-reg">#}
-{#		 			<label for="{{form.first_name.id_for_label}}">First name</label>#}
-{#		 			{{form.first_name}}#}
-{#		 			<div class="form-error">#}
-{#		 				{{form.first_name.errors}}#}
-{#		 			</div>#}
-{#		 		</div>#}
-{##}
-{#		 		<div class="form-group-reg">#}
-{#		 			<label for="{{form.last_name.id_for_label}}">Last name</label>#}
-{#		 			{{form.last_name}}#}
-{#		 			<div class="form-error">#}
-{#		 				{{form.last_name.errors}}#}
-{#		 			</div>#}
-{#		 		</div>#}
-{#		 	</div>#}
 
-{#	 		<div class="form-group-usual">#}
-{#	 			<label for="{{form.username.id_for_label}}">Username</label>#}
-{#	 			{{form.username}}#}
-{#	 			<div class="form-error">#}
-{#	 				{{form.username.errors}}#}
-{#	 			</div>#}
-{#		 	</div>	#}
+	 		<div class="form-group-usual">
+	 			<label for="{{form.username.id_for_label}}">Username</label>
+	 			{{form.username}}
+	 			<div class="form-error">
+	 				{{form.username.errors}}
+	 			</div>
+		 	</div>
 
 		 	<div class="form-group-usual">
 	 			<label for="{{form.email.id_for_label}}">Email</label>
@@ -63,14 +46,6 @@
 	 			</div>
 		 	</div>
 		 	<br>
-{#		 	<div class="form-group-usual">#}
-{#	 			<label for="{{form.capcha.id_for_label}}">{{form.captcha.label}}</label>#}
-{#	 			{{form.captcha}}#}
-{#	 			<div class="form-error">#}
-{#	 				{{form.captcha.errors}}#}
-{#	 			</div>#}
-{#		 	</div>#}
-
 		 	<button type="submit" class="btn btn-success btn-block reg_butt">Register</button>
 	 	</form>
 	</div> 	

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .forms import LoginUserForm, RegisterUserForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -12,7 +11,7 @@ class RegisterUser(DataMixin, SuccessMessageMixin, CreateView):
 
     form_class = RegisterUserForm
     template_name = 'users/register.html'
-    success_url = reverse_lazy('login')  # success_url = reverse_lazy("send_message_to_user")  # success_message = "User added successfully"
+    success_url = reverse_lazy('login')
     error_message = "Registration error"
 
     def get_context_data(self, *args, **kwargs):
@@ -24,9 +23,9 @@ class RegisterUser(DataMixin, SuccessMessageMixin, CreateView):
 class LoginUser(DataMixin, SuccessMessageMixin, LoginView):
 
     form_class = LoginUserForm
-    template_name = 'users/login.html'  # template_name = '../users/templates/users/login.html'
+    template_name = 'users/login.html'
     error_message = "Something went wrong"
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("")
     user = ""
     success_message = f"Successfully login"
 
