@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from services.get_home import *
 
 
 def index(request):

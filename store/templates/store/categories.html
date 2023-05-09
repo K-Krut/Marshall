@@ -6,4 +6,13 @@
 
 {% block content %}
     <h1>categories</h1>
+    {% for category in categories %}
+    <li class="nav-item">
+{#        <a href="{% url 'get_category' elem.slug %}" class="nav-link active" aria-current="page">#}
+{#        {{elem.name}}#}
+{#        </a>#}
+
+    </li>
+    <br>
+{% endfor %}
 {% endblock %}
