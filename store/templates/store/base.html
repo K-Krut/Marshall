@@ -9,17 +9,45 @@
         {% endblock %}
     </title>
     <style>
-        body {
-            padding: 20px;
+        .header {
+            height: 80px;
+            background: black;
+            display: flex;
+            justify-content: space-between;
+            padding: 25px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .cart {
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        .cart img {
+            width: 100%;
+            height: auto;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
+            padding: 50px 200px 50px 200px;
         }
 
         .product-card {
+            position: relative;
             background-color: #fff;
             border-radius: 12px;
             overflow: hidden;
@@ -52,11 +80,16 @@
 
         .product-info {
             padding: 20px;
+            margin-bottom: 60px;
         }
 
         .product-price {
+            position: absolute;
+            bottom: 0;
+            left: 0;
             font-weight: bold;
             font-size: 24px;
+            padding-left: 20px;
         }
 
     </style>
