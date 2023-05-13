@@ -5,49 +5,52 @@
     <title>Registration</title>
 {% endblock %}
 
-
 {% block content %}
-	
-	<div class="form_body">
-		<h2 class="form__header">Registration</h2>
-
-	 	<form action="" method="post" class="form_registr">
-	 		{% csrf_token %}
-
-	 		<div class="form-group-usual">
-	 			<label for="{{form.username.id_for_label}}">Username</label>
-	 			{{form.username}}
-	 			<div class="form-error">
-	 				{{form.username.errors}}
-	 			</div>
-		 	</div>
-
-		 	<div class="form-group-usual">
-	 			<label for="{{form.email.id_for_label}}">Email</label>
-	 			{{form.email}}
-	 			<div class="form-error">
-	 				{{form.email.errors}}
-	 			</div>
-		 	</div>
-
-		 	<div class="form-group-usual">
-	 			<label for="{{form.password1.id_for_label}}">Password</label>
-	 			{{form.password1}}
-	 			<div class="form-error">
-	 				{{form.password1.errors}}
-	 			</div>
-		 	</div>
-
-		 	<div class="form-group-usual">
-	 			<label for="{{form.password2.id_for_label}}">Confirm password</label>
-	 			{{form.password2}}
-	 			<div class="form-error">
-	 				{{form.password2.errors}}
-	 			</div>
-		 	</div>
-		 	<br>
-		 	<button type="submit" class="btn btn-success btn-block reg_butt">Register</button>
-	 	</form>
-	</div> 	
-
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card mt-5">
+        <div class="card-header bg-dark text-white text-center">
+          <h2 class="mb-0">Registration</h2>
+        </div>
+        <div class="card-body">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{form.username.id_for_label}}" class="mb-1">Username</label>
+              {{form.username}}
+              <div class="invalid-feedback">
+                {{form.username.errors}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="{{form.email.id_for_label}}" class="mb-1">Email</label>
+              {{form.email}}
+              <div class="invalid-feedback">
+                {{form.email.errors}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="{{form.password1.id_for_label}}" class="mb-1">Password</label>
+              {{form.password1}}
+              <div class="invalid-feedback">
+                {{form.password1.errors}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="{{form.password2.id_for_label}}" class="mb-1">Confirm password</label>
+              {{form.password2}}
+              <div class="invalid-feedback">
+                {{form.password2.errors}}
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-success btn-block">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

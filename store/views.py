@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from services.get_home import *
-
 
 def index(request):
     return render(request, 'store/index.html')
