@@ -1,0 +1,25 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    Marshall
+{% endblock %}
+
+{% block content %}
+    <h1>Products</h1>
+    <div class="product-grid">
+        {% for product in products %}
+            <div class="product-card">
+                <div class="product-image">
+                    {% if product.photo %}
+                        <img src="{{ product.photo.url }}" alt="{{ product.name }}" width="200" height="200">
+                    {% endif %}
+                </div>
+                <div class="product-info">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.description }}</p>
+                    <p class="product-price">€ {{ product.price }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
