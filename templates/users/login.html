@@ -13,9 +13,19 @@
         <div class="card-header bg-dark text-white text-center">
           <h2 class="mb-0">Login</h2>
         </div>
+
         <div class="card-body">
           <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
+
+            <div class="form-group">
+              <label for="{{form.username.id_for_label}}" class="mb-1">Username</label>
+              {{form.username}}
+              <div class="invalid-feedback">
+                {{form.username.errors}}
+              </div>
+            </div>
+
             <div class="form-group">
               <label for="{{form.email.id_for_label}}" class="mb-1">Email</label>
               {{form.email}}
@@ -23,6 +33,7 @@
                 {{form.email.errors}}
               </div>
             </div>
+
             <div class="form-group">
               <label for="{{form.password.id_for_label}}" class="mb-1">Password</label>
               {{form.password}}
@@ -30,6 +41,7 @@
                 {{form.password.errors}}
               </div>
             </div>
+
             <div class="form-group text-center">
               <button type="submit" name="submit_button" class="btn btn-success btn-block">Login</button>
             </div>
