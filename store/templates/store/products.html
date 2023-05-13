@@ -1,3 +1,13 @@
+<header>
+    <div class="header">
+        <div class="logo">
+            <img src="static/store/logo.png" alt="Marshall Logo">
+        </div>
+        <div class="cart">
+            <img src="static/store/cart.png" alt="Cart">
+        </div>
+    </div>
+</header>
 {% extends 'store/base.html' %}
 
 {% block title %}
@@ -5,7 +15,6 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Products</h1>
     <div class="product-grid">
         {% for product in products %}
             <div class="product-card">
