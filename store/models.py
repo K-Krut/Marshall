@@ -99,7 +99,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=150, unique=True, db_index=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    photo = models.ImageField(upload_to=f"img/%Y/%m/%d/", blank=True)
+    photo = models.ImageField(upload_to='products/')
     price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True)
