@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Marshall{% endblock %}</title>
+</head>
+<body>
+<main>
+    <div class="shoppingCart">
+        <h1>Cart</h1>
+        <div class="heading">
+            <div class="p_name"><h4>Product</h4></div>
+            <div class="name"><h4>Quantity</h4></div>
+            <div class="name"><h4>Unit Price</h4></div>
+            <div class="name"><h4>Price</h4></div>
+        </div>
+        <div class="itemContainer">
+            {% if cart.count == 0 %}
+                <div class="empty">Your cart is empty.</div>
+            {% else %}
+                {% for item in items %}
+                    <div class="item">
+                        <div class="iteminfo">
+                            <div class="p_img">
+                                <img src="{{ item.product.photo.url }}" alt="{{ item.product.name }}"/>
+                            </div>
+                            <p>{{ item.product.name }}</p>
+                        </div>
+                        <div class="name">{{ item.quantity }}</div>
+                        <div class="name">€{{ item.product.price }}</div>
+                        <div class="name">€{{ item.price }}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% if cart.count != 0 %}
+            <div class="checkout">
+                <h3>Total €{{ cart.total }}</h3>
+                <a href="#" class="checkout-btn">Checkout</a>
+            </div>
+        {% endif %}
+    </div>
+</main>
+</body>
+</html>
+
+<style>
+
+    body {
+        background: #161616;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .empty {
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .shoppingCart {
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        margin: 20px auto;
+        width: 800px;
+        border-radius: 18px;
+        flex-grow: 1;
+    }
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        background-color: black;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 12px;
+    }
+
+    .name, .p_name {
+        width: 20%;
+        text-align: center;
+    }
+
+    p {
+        padding-left: 16px;
+    }
+
+    .p_name {
+        width: 280px;
+    }
+
+    .itemContainer {
+        margin-top: 10px;
+    }
+
+    .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        transition: background-color 0.3s ease;
+        border-radius: 12px;
+        border: 2px solid black;
+        font-size: large;
+    }
+
+    .item:hover {
+        background-color: #f2f2f2;
+    }
+
+    .iteminfo {
+        display: flex;
+        align-items: center;
+        width: 280px;
+    }
+
+    .p_img {
+        width: 120px;
+        height: 120px;
+        background: #C5C5C5;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+
+    .p_img img {
+        width: 120px;
+        height: 100%;
+        object-fit: scale-down;
+    }
+
+    .checkout {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .checkout-btn {
+        padding: 10px 20px;
+        background-color: black;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+    }
+
+    .checkout-btn:hover {
+        background-color: #333;
+    }
+
+</style>

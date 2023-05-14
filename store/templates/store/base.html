@@ -9,6 +9,10 @@
         {% endblock %}
     </title>
     <style>
+        .product-grid {
+            background: #161616;
+        }
+
         .header {
             height: 80px;
             background: black;
@@ -18,7 +22,7 @@
         }
 
         .logo {
-            width: 120px;
+            width: 115px;
             height: 30px;
             overflow: hidden;
         }
@@ -31,7 +35,22 @@
         .cart {
             width: 30px;
             height: 30px;
-            overflow: hidden;
+            position: relative;
+        }
+
+        .cart p {
+            position: absolute;
+            text-align: center;
+            width: 20px;
+            height: 20px;
+            top: -5px;
+            right: -10px;
+            background-color: white;
+            color: black;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bolder;
+            z-index: 1;
         }
 
         .cart img {
@@ -53,6 +72,8 @@
             overflow: hidden;
             box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
@@ -68,8 +89,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 200px;
+            height: 250px;
             overflow: hidden;
+            background: #C5C5C5;
         }
 
         .product-image img {
@@ -79,23 +101,45 @@
         }
 
         .product-info {
-            padding: 20px;
-            margin-bottom: 60px;
+            padding: 10px 20px 10px 20px;
+            flex-grow: 1;
+            margin-bottom: 50px;
         }
 
         .product-price {
+            font-weight: bold;
+            font-size: 24px;
+            height: 30px;
+            padding-top: 5px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: absolute;
             bottom: 0;
             left: 0;
-            font-weight: bold;
-            font-size: 24px;
-            padding-left: 20px;
+            width: 100%;
+            padding: 10px 20px 18px 20px;
         }
 
+        button {
+            color: transparent;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            background-image: url("{% static 'store/add.png' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            border: none;
+            border-radius: 50%;
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'store/css/store.css' %}">
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -110,5 +154,6 @@
 <body>
 {% block content %}
 {% endblock %}
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
