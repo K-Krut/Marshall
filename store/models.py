@@ -1,3 +1,5 @@
+import uuid
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -94,6 +96,7 @@ class Types(models.Model):
 
 
 class Product(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, null=True)
@@ -114,6 +117,38 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
     images = models.FileField("img", upload_to=f"img/%Y/%m/%d/")
 
+    def __str__(self):
+        return self.product.name
 
-def __str__(self):
-    return self.product.name
+class Cart(models.Model):
+    id = models.UUIDField(default=uuid.uuid4(), primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+    @property
+    def total(self):
+        items = self.cartitems.all()
+        total = sum([item.price for item in items])
+        return total
+
+    @property
+    def count(self):
+        items = self.cartitems.all()
+        quantity = sum([item.quantity for item in items])
+        return quantity
+
+class CartItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cartitems')
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.product.name)
+
+    @property
+    def price(self):
+        new = self.product.price * self.quantity
+        return new
