@@ -1,7 +1,11 @@
+import datetime
+from django.utils import timezone
+
 from django.db import models
 
 # Create your models here.
 from django.db import models
+# from users.models import DeliveryMethod, NewUser
 
 
 class Categories(models.Model):
@@ -114,6 +118,22 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
     images = models.FileField("img", upload_to=f"img/%Y/%m/%d/")
 
+    def __str__(self):
+        return self.product.name
 
-def __str__(self):
-    return self.product.name
+#
+# class Order(models.Model):
+#     id = models.UUIDField()
+#     owner = models.ForeignKey(NewUser, on_delete=models.DO_NOTHING)
+#     delivery_method = models.ForeignKey(DeliveryMethod, on_delete=models.DO_NOTHING)
+#     created = models.DateTimeField(default=timezone.now)
+#     approved = models.BooleanField(default=False)
+#     total_cost = models.FloatField()
+#
+#
+# class OrderItem(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+#     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+#     quantity = models.PositiveIntegerField(default=1)
+#     total_cost = models.FloatField()
+

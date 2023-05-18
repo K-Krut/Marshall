@@ -35,20 +35,14 @@ class CustomAccountManager(BaseUserManager):
 
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
-
     email = models.EmailField(_("email address"), unique=True)
     username = models.CharField(max_length=150, unique=True, null=True)
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
-    middle_name = models.CharField(max_length=150, blank=True)
 
-    living_place = models.CharField(max_length=150, blank=True)
-    ware_house = models.CharField(max_length=150, blank=True)
-    delivery_type = models.CharField(max_length=150, blank=True)
     phone = models.CharField(max_length=150, blank=True)
 
     start_date = models.DateTimeField(default=timezone.now)
-    about = models.TextField(_("about"), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
@@ -63,3 +57,20 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     # def __str__(self):
     #     return self.user_name
+
+
+
+
+class DeliveryType(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+
+    # class Meta:
+
+
+
+class DeliveryMethod(models.Model):
+    city = models.CharField(max_length=150, unique=False)
+    delivery_type = models.ForeignKey(DeliveryType, on_delete=models.DO_NOTHING)
+    post_office_code = models.PositiveIntegerField(unique=True)
+    user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+

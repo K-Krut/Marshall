@@ -15,7 +15,9 @@
                     {% endif %}
                 </div>
                 <div class="product-info">
-                    <h2>{{ product.name }}</h2>
+                    <a href="{% url 'product_details' product_slug=product.slug %}">
+                        <h2>{{ product.name }}</h2>
+                    </a>
                     <p>{{ product.description }}</p>
                     <p class="product-price">€ {{ product.price }}</p>
                 </div>
