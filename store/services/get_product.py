@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from store.models import Product
+from store.models import Product, Characteristics
 
 
 def get_product_by_slug(slug):
@@ -8,3 +8,11 @@ def get_product_by_slug(slug):
         return get_object_or_404(Product, slug=slug)
     except Product.DoesNotExist:
         raise Http404(f"Product with slug {slug} not found...")
+
+
+def get_product_characteristics_by_slug(product):
+    try:
+        return Characteristics.objects.get(product=product)
+    except Product.DoesNotExist:
+        raise Http404(f"Characteristics for Product {product} not found...")
+
