@@ -86,6 +86,9 @@ class Characteristics(models.Model):
     physical = models.ForeignKey(Physical, on_delete=models.CASCADE, null=True)
     connectivity = models.ForeignKey(Connectivity, on_delete=models.CASCADE, null=True)
 
+    def __str__(self):
+        return f'{self.audio}\n{self.battery}\n{self.physical}\n{self.connectivity}'
+
 
 class Types(models.Model):
     name = models.CharField(max_length=100)
