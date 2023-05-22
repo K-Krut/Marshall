@@ -153,5 +153,8 @@ class CartItem(models.Model):
 
     @property
     def price(self):
-        new = self.product.price * self.quantity
-        return new
+        return self.product.price * self.quantity
+
+# class Order(models.Model):
+#
+#
