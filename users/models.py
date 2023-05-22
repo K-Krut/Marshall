@@ -33,6 +33,10 @@ class CustomAccountManager(BaseUserManager):
         user.save()
         return user
 
+# class DeliveryType(models.Model):
+#     name = models.CharField(max_length=100)
+#
+# class DeliveryMethod(models.Model):
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
 
@@ -40,22 +44,16 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True, null=True)
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
-    middle_name = models.CharField(max_length=150, blank=True)
-
-    living_place = models.CharField(max_length=150, blank=True)
-    ware_house = models.CharField(max_length=150, blank=True)
-    delivery_type = models.CharField(max_length=150, blank=True)
     phone = models.CharField(max_length=150, blank=True)
 
     start_date = models.DateTimeField(default=timezone.now)
-    about = models.TextField(_("about"), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["user_name", "first_name"]
+    REQUIRED_FIELDS = ["user_name"]
 
     class Meta:
         verbose_name = "User"
