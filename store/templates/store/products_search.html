@@ -30,19 +30,15 @@
     </style>
     {% include 'store/includes/header.html' %}
     <section class="projects-section bg-dark product-section" id="projects">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <form action="{% url 'search_product' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="name">
-                    <input type="submit" name="submit" value="Search">
-                </form>
-            </div>
-        </div>
+        <form action="{% url 'search_product' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="name">
+            <input type="submit" name="submit" value="Search">
+        </form>
         <div class="container px-4 px-lg-5">
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
                 <div class="product-grid">
-                    {% for product in products %}
+                    {% for product in results %}
                         <div class="card" style="width: 18rem; background-color: #353535">
                             {% if product.photo %}
                                 <img src="{{ product.photo.url }}" alt="{{ product.name }} " class="card-img-top">
@@ -56,10 +52,11 @@
                                 <button class="btn btn-primary" value="{{ product.id }}">Add</button>
                             </div>
                         </div>
+                    {% empty %}
+                        <h5>Sorry but there is no a thing by your query</h5>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </section>
-
 {% endblock %}
