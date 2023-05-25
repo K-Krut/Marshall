@@ -12,5 +12,5 @@ urlpatterns = [
                   path("add_to_cart", views.add_to_cart, name="add"),
                   # path('cart/remove/<slug:product_slug>', views.remove_from_cart, name='remove_from_cart'),
                   path('cart/clear', views.clear_cart, name='clear_cart'),
-                  # path('search/', search, name='search'),
+                  path('search/', views.search_product, name='search_product'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
