@@ -71,3 +71,13 @@ def clear_cart(request):
     CartItem.objects.filter(cart__user=user).delete()
     Cart.objects.filter(user=user).delete()
     return HttpResponseRedirect(reverse("cart"))
+
+#
+# def search_product(request):
+#     if request.method == "POST":
+#         query_name = request.POST.get('name', None)
+#         if query_name:
+#             results = Product.objects.filter(name__contains=query_name)
+#             return render(request, 'product-search.html', {"results": results})
+#
+#     return render(request, 'product-search.html')
