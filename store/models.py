@@ -123,6 +123,7 @@ class ProductImage(models.Model):
     def __str__(self):
         return self.product.name
 
+
 class Cart(models.Model):
     id = models.UUIDField(default=uuid.uuid4(), primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -143,6 +144,7 @@ class Cart(models.Model):
         quantity = sum([item.quantity for item in items])
         return quantity
 
+
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cartitems')
@@ -154,7 +156,3 @@ class CartItem(models.Model):
     @property
     def price(self):
         return self.product.price * self.quantity
-
-# class Order(models.Model):
-#
-#
