@@ -42,7 +42,7 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
                 <div class="product-grid">
-                    {% for produact in products %}
+                    {% for product in products %}
                         <div class="card" style="width: 18rem; background-color: #353535">
                             {% if product.photo %}
                                 <img src="{{ product.photo.url }}" alt="{{ product.name }} " class="card-img-top">
