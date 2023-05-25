@@ -1,9 +1,54 @@
-{%  extends 'store/base.html' %}
+{% extends 'store/base_product.html' %}
+{% load static %}
 
 {% block title %}
     Marshall
 {% endblock %}
 
 {% block content %}
-    <h1>Marshall</h1>
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+{#                    <h1 class="mx-auto my-0 text-uppercase">Monitor II</h1>#}
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="about-section text-center" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-4">About</h2>
+                    <p class="text-white-50">
+                        Welcome to Marshall Shop, where exceptional sound meets timeless design. As a premier
+                        destination for audio enthusiasts, we specialize in bringing you the best of Marshall, the
+                        iconic brand renowned for its legendary amplifiers, headphones, and speakers.
+                    </p>
+                    <p class="text-white-50">
+                        With a rich heritage dating back to 1962, Marshall has left an indelible mark on the music
+                        industry, shaping the way we experience sound. Our carefully curated collection showcases the
+                        pinnacle of Marshall's craftsmanship, delivering a mesmerizing audio experience that transcends
+                        boundaries.
+                    </p>
+                    <p class="text-white-50">
+                        Step into our world and discover the true essence of rock 'n' roll. From the unmistakable roar
+                        of Marshall amplifiers to the immersive clarity of our headphones and speakers, we cater to the
+                        discerning tastes of musicians, audiophiles, and music lovers alike.
+                    </p>
+                    <p class="text-white-50">
+                        Immerse yourself in the rich tapestry of sound, where every note resonates with unmatched
+                        precision and every beat pulses through your veins. Our amplifiers evoke the spirit of the
+                        stage, empowering musicians to create sonic masterpieces that captivate audiences worldwide.
+                    </p>
+                    <p class="text-white-50">
+                        Experience the freedom of wireless audio with our range of headphones, offering you the freedom
+                        to move while never compromising on sound quality. Lose yourself in the music, feeling every
+                        nuance and emotion as if you were in the recording studio with the artist.
+                    </p>
+                </div>
+            </div>
+            <img class="img-fluid" src="{% static 'assets/full-width-major-iv-desktop@1.41x.jpg' %}">
+        </div>
+    </section>
 {% endblock %}
