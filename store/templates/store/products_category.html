@@ -31,11 +31,9 @@
     <section class="projects-section bg-dark product-section" id="projects">
         <div class="container px-4 px-lg-5">
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <form action="{% url 'search_product' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="name">
-                    <input type="submit" name="submit" value="Search">
-                </form>
+                {% for category in categories %}
+                    <h1>{{ category.name }}</h1>
+                {% endfor %}
             </div>
         </div>
         <div class="container px-4 px-lg-5">
@@ -51,7 +49,7 @@
                                     <h5 class="card-title">{{ product.name }}</h5>
                                 </a>
                                 <h6 class="">€ {{ product.price }}</h6>
-                                {#                                <p class="card-text">{{ product.description }}</p>#}
+                                <p class="card-text">{{ product.description|slice:"0:100" }}...</p>
                                 <button class="btn btn-primary" value="{{ product.id }}">Add</button>
                             </div>
                         </div>
