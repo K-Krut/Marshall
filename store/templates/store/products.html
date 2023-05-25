@@ -1,65 +1,63 @@
-{% extends 'store/base_product.html' %}
+{% extends 'store/base.html' %}
 
 {% block title %}
     Marshall
 {% endblock %}
 
 {% block content %}
-
-    <style>
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 0px 200px 50px 200px;
-        }
-
-        a:link, a:visited {
-            color: black;
-            cursor: auto;
-        }
-
-        a:link:active, a:visited:active {
-            color: black;
-            text-decoration: black;
-        }
-
-        a:link:hover {
-            color: black;
-        }
-    </style>
-    {% include 'store/includes/header.html' %}
-    <section class="projects-section bg-dark product-section" id="projects">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <form action="{% url 'search_product' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="name">
-                    <input type="submit" name="submit" value="Search">
-                </form>
+    <header>
+        <div class="header">
+            <a href="{% url 'home' %}">
+                <div class="logo">
+                    <img src="static/store/logo.png" alt="Marshall Logo">
+                </div>
+            </a>
+            <form action="{% url 'search_product' %}" method="POST">
+                {% csrf_token %}
+                <div class="search" style="display: flex; margin-left: 700px">
+                    <input type="text" name="name" style="margin-right: 12px; border-radius: 6px; width: 400px">
+                    <input type="submit" name="submit" value="Search" style="border-radius: 6px">
+                </div>
+            </form>
+            <div style="font-size: large; color: white; display: flex; justify-content: space-between; margin-left: 50px;"
+                 class="pages">
+                <a href="{% url 'products' %}" class=products">
+                    <p>Products</p>
+                </a>
+                <a style="margin-left: 50px; margin-right: 50px" href="{% url 'login' %}" class=login">
+                    <p>Login</p>
+                </a>
             </div>
+            <a href="{% url 'cart' %}" class="cart">
+                <img src="static/store/cart.png" alt="Cart">
+                {% if cart.count != 0 %}
+                    <p>{{ cart.count }}</p>
+                {% endif %}
+            </a>
         </div>
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <div class="product-grid">
-                    {% for product in products %}
-                        <div class="card" style="width: 18rem; background-color: #353535">
-                            {% if product.photo %}
-                                <img src="{{ product.photo.url }}" alt="{{ product.name }} " class="card-img-top">
-                            {% endif %}
-                            <div class="card-body" style="background-color: #ffffff">
-                                <a href="{% url 'product_details' product_slug=product.slug %}">
-                                    <h5 class="card-title">{{ product.name }}</h5>
-                                </a>
-                                <h6 class="">€ {{ product.price }}</h6>
-                                {#                                <p class="card-text">{{ product.description }}</p>#}
-                                <button class="btn btn-primary" value="{{ product.id }}">Add</button>
-                            </div>
-                        </div>
-                    {% endfor %}
+    </header>
+    <div class="product-grid">
+        {% for product in products %}
+            <div class="product-card">
+                <div class="product-image">
+                    {% if product.photo %}
+                        <img src="{{ product.photo.url }}" alt="{{ product.name }}" width="200" height="200">
+                    {% endif %}
+                </div>
+                <div class="product-info">
+                    <div class="description">
+                        <a style="text-decorations:none; color:inherit;" class="details"
+                           href="{% url 'product_details' product_slug=product.slug %}">
+                            <h2>{{ product.name }}</h2>
+                        </a>
+                        <p>{{ product.description }}</p>
+                    </div>
+                    <div class="footer">
+                        <p class="product-price">€ {{ product.price }}</p>
+                        <button value="{{ product.id }}">Add</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        {% endfor %}
+    </div>
 {% endblock %}

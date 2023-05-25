@@ -14,10 +14,6 @@ def index(request):
     return render(request, 'store/index.html')
 
 
-# def category(request, category_slug):
-#     return render(request, 'store/category_page.html')
-
-
 def products(request):
     products = Product.objects.all()
 
@@ -61,6 +57,20 @@ def add_to_cart(request):
         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
         cartitem, created = CartItem.objects.get_or_create(cart=cart, product=product)
         cartitem.quantity += 1
+        cartitem.save()
+
+    return JsonResponse(product_id, safe=False)
+
+def remove_from_cart(request):
+    data = json.loads(request.body)
+    product_id = data["id"]
+    product = Product.objects.get(id=product_id)
+
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
+        cartitem, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        if cartitem.quantity > 0:
+            cartitem.quantity -= 1
         cartitem.save()
 
     return JsonResponse(product_id, safe=False)
