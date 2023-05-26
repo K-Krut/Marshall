@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,6 @@
 <main>
     <div class="shoppingCart">
         <h1>Cart</h1>
-        <a href="clear">
-            <h1>Clear Cart</h1>
-        </a>
         <div class="heading">
             <div class="p_name"><h4>Product</h4></div>
             <div class="name"><h4>Quantity</h4></div>
@@ -22,26 +20,36 @@
                 <div class="empty">Your cart is empty.</div>
             {% else %}
                 {% for item in items %}
-                    <div class="item">
+                    {% if item.quantity != 0 %}
+                        <div class="item">
                         <div class="iteminfo">
-                                <div class="p_img">
-                                    <img src="{{ item.product.photo.url }}" alt="{{ item.product.name }}"/>
-                                </div>
-                            <a href="{% url 'product_details' product_slug=item.product.slug %}">
+                            <div class="p_img">
+                                <img src="{{ item.product.photo.url }}" alt="{{ item.product.name }}"/>
+                            </div>
+                            <a style="text-decorations:none; color:inherit;"
+                               href="{% url 'product_details' product_slug=item.product.slug %}">
                                 <p>{{ item.product.name }}</p>
                             </a>
                         </div>
-                        <div class="name">{{ item.quantity }}</div>
+                        <div class="stepper">
+                            <button class="remove" value="{{ item.product.id }}">Remove</button>
+                            <div class="name">{{ item.quantity }}</div>
+                            <button class="add" value="{{ item.product.id }}">Add</button>
+                        </div>
                         <div class="name">€{{ item.product.price }}</div>
                         <div class="name">€{{ item.price }}</div>
                     </div>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
         </div>
         {% if cart.count != 0 %}
             <div class="checkout">
                 <h3>Total €{{ cart.total }}</h3>
-                <a href="#" class="checkout-btn">Checkout</a>
+                <a class="clear" href="clear">
+                    <p>Clear</p>
+                </a>
+                <p class="checkout-btn">Checkout</p>
             </div>
         {% endif %}
     </div>
@@ -74,6 +82,10 @@
         padding-top: 10px;
     }
 
+    h3 {
+        margin-top: 20px;
+    }
+
     .shoppingCart {
         padding-right: 20px;
         padding-left: 20px;
@@ -81,7 +93,7 @@
         background-color: #f8f8f8;
         border: 1px solid #ccc;
         margin: 20px auto;
-        width: 800px;
+        width: 900px;
         border-radius: 18px;
         flex-grow: 1;
     }
@@ -155,9 +167,24 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
         font-size: 18px;
         font-weight: bold;
+    }
+
+    a:link, a:visited {
+        color: black;
+        cursor: auto;
+        text-decoration: none;
+    }
+
+    a:link:active, a:visited:active {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:link:hover {
+        color: black;
+        text-decoration: none;
     }
 
     .checkout-btn {
@@ -166,10 +193,53 @@
         color: #fff;
         text-decoration: none;
         border-radius: 8px;
+        margin-top: 20px;
     }
 
     .checkout-btn:hover {
         background-color: #333;
     }
 
+    .clear {
+        font-size: large;
+        text-decoration: none;
+        margin-left: 500px;
+    }
+
+    .stepper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 180px;
+    }
+
+    .remove {
+        color: transparent;
+        display: block;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        background-image: url("{% static 'store/minus.png' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: none;
+        border-radius: 50%;
+        margin-left: 20px;
+    }
+
+    .add {
+        color: transparent;
+        display: block;
+        width: 33px;
+        height: 33px;
+        background-color: transparent;
+        background-image: url("{% static 'store/add.png' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: none;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
 </style>
+<script src="{% static 'js/quantity.js' %}"></script>
