@@ -1,0 +1,62 @@
+{% extends 'store/base_product.html' %}
+
+{% block title %}
+    Marshall
+{% endblock %}
+
+{% block content %}
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0px 200px 50px 200px;
+        }
+
+        a:link, a:visited {
+            color: black;
+            cursor: auto;
+        }
+
+        a:link:active, a:visited:active {
+            color: black;
+            text-decoration: black;
+        }
+
+        a:link:hover {
+            color: black;
+        }
+    </style>
+    {% include 'store/includes/header.html' %}
+    <section class="projects-section bg-dark product-section" id="projects">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                {% for category in categories %}
+                    <h1>{{ category.name }}</h1>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                <div class="product-grid">
+                    {% for product in products %}
+                        <div class="card" style="width: 18rem; background-color: #353535">
+                            {% if product.photo %}
+                                <img src="{{ product.photo.url }}" alt="{{ product.name }} " class="card-img-top">
+                            {% endif %}
+                            <div class="card-body" style="background-color: #ffffff">
+                                <a href="{% url 'product_details' product_slug=product.slug %}">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                </a>
+                                <h6 class="">€ {{ product.price }}</h6>
+                                <p class="card-text">{{ product.description|slice:"0:100" }}...</p>
+                                <button class="btn btn-primary" value="{{ product.id }}">Add</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

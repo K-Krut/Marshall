@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<li class="nav-item dropdown text-white">
+    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button"
+       data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+        {% for category in categories %}
+            <li><a class="dropdown-item" href="{% url 'category_page' category_slug=category.slug %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</li>
+
+</html>

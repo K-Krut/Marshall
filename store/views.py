@@ -3,15 +3,27 @@ import json
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls.base import reverse
-from . import models
-from .models import Product
 from .models import Cart
 from .models import CartItem
 from .services.get_product import *
+from .services.get_category import *
 
 
 def index(request):
-    return render(request, 'store/index.html')
+    context = {"categories": Categories.objects.all()}
+    return render(request, 'store/index.html', context)
+
+def category(request, category_slug):
+    context = {
+        "category": get_category_by_slug(category_slug),
+        "products": get_products_by_category(get_category_by_slug(category_slug))
+    }
+    return render(request, 'store/products_category.html', context)
+
+
+def categories(request):
+    context = {"categories": Categories.objects.all()}
+    return render(request, 'store/includes/header.html', context)
 
 
 def products(request):
@@ -19,7 +31,7 @@ def products(request):
 
     if request.user.is_authenticated:
         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
-        context = {"products": products, "cart": cart}
+        context = {"products": products, "cart": cart, "categories": Categories.objects.all()}
         return render(request, "store/products.html", context)
 
     context = {
@@ -31,7 +43,8 @@ def products(request):
 def product(request, product_slug):
     context = {
         "product": get_product_by_slug(product_slug),
-        "characteristics": get_product_characteristics_by_slug(get_product_by_slug(product_slug))
+        "characteristics": get_product_characteristics_by_slug(get_product_by_slug(product_slug)),
+        "categories": Categories.objects.all()
     }
     return render(request, 'store/product.html', context)
 

@@ -5,28 +5,37 @@
 {% endblock %}
 
 {% block content %}
-    <header>
-        <div class="header">
-            <a href="{% url 'home' %}">
-                <div class="logo">
-                    <img src="static/store/logo.png" alt="Marshall Logo">
-                </div>
-            </a>
-            <form action="{% url 'search_product' %}" method="POST">
-                {% csrf_token %}
-                <div class="search" style="display: flex; margin-left: 700px">
-                    <input type="text" name="name" style="margin-right: 12px; border-radius: 6px; width: 400px">
-                    <input type="submit" name="submit" value="Search" style="border-radius: 6px">
-                </div>
-            </form>
-            <div style="font-size: large; color: white; display: flex; justify-content: space-between; margin-left: 50px;"
-                 class="pages">
-                <a href="{% url 'products' %}" class=products">
-                    <p>Products</p>
-                </a>
-                <a style="margin-left: 50px; margin-right: 50px" href="{% url 'login' %}" class=login">
-                    <p>Login</p>
-                </a>
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0px 200px 50px 200px;
+        }
+
+        a:link, a:visited {
+            color: black;
+            cursor: auto;
+        }
+
+        a:link:active, a:visited:active {
+            color: black;
+            text-decoration: black;
+        }
+
+        a:link:hover {
+            color: black;
+        }
+    </style>
+    {% include 'store/includes/header.html' %}
+    <section class="projects-section bg-dark product-section" id="projects">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                <form action="{% url 'search_product' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name">
+                    <input type="submit" name="submit" value="Search">
+                </form>
             </div>
             <a href="{% url 'cart' %}" class="cart">
                 <img src="static/store/cart.png" alt="Cart">

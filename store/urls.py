@@ -6,7 +6,8 @@ from django.conf.urls.static import static
 urlpatterns = [
                   path('', views.index, name='home'),
                   path('products', views.products, name='products'),
-                  # path('categories/<slug:category_slug>', views.categories, name='categories'),
+                  # path('categories', views.categories, name='categories'),
+                  path('categories/<slug:category_slug>', views.category, name='category_page'),
                   path('products/<slug:product_slug>', views.product, name='product_details'),
                   path('cart/', views.cart, name='cart'),
                   path("add_to_cart", views.add_to_cart, name="add"),

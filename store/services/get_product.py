@@ -10,6 +10,13 @@ def get_product_by_slug(slug):
         raise Http404(f"Product with slug {slug} not found...")
 
 
+def get_products_by_category(category_):
+    try:
+        return Product.objects.filter(category=category_)
+    except Product.DoesNotExist:
+        raise Http404(f"Product with category {category_.name} not found...")
+
+
 def get_product_characteristics_by_slug(product):
     try:
         return Characteristics.objects.get(product=product)
